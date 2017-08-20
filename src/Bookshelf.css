@@ -1,0 +1,13 @@
+.bookshelf {
+  width: 80%;
+  margin: 0 10%;
+
+}
+
+.bookshelf-title {
+  border-bottom: 1px solid #ccc;
+}
+
+.book-list {
+
+}
