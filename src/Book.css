@@ -1,15 +1,29 @@
-.book {
-  display: inline-block;
-  max-width: 20%;
-  padding: 1rem;
-  text-align: center;
+.book-wrapper {
+  padding: 0.5rem 1rem;
 }
 
-.book p {
+.book {
+  max-width: 10rem;
   text-align: left;
-  margin: 0;
+}
+
+.book-cover {
+  height: 12rem;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.8rem;
+}
+
+.book-cover img {
+  max-height: 12rem;
+  max-width: 10rem;
 }
 
 .book-author {
   color: darkgrey;
+  font-size: 0.8rem;
+}
+
+.book-title {
+  font-size: 0.8rem;
 }

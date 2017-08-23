@@ -24,11 +24,11 @@ class Bookshelf extends Component {
         {type && (
           <h2 className="bookshelf-title">{shelfNames[type]}</h2>
         )}
-        <div className="book-list">
+        <ol className="books-grid">
           {booksToDisplay.map((book, index) => (
             <Book key={book.id} book={book} />
           ))}
-        </div>
+        </ol>
       </section>
     );
   }
