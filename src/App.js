@@ -9,23 +9,43 @@ import './App.css';
 // TODO: try PropTypes
 class BooksApp extends Component {
   state = {
-    books: []
+    books: [],
+    shelves: [
+      {
+        name: 'Currently Reading',
+        type: 'currentlyReading'
+      }, {
+        name: 'Want to Read',
+        type: 'wantToRead'
+      }, {
+        name: 'Read',
+        type: 'read'
+      }, {
+        name: 'None',
+        type: 'none'
+      }
+    ]
   };
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      console.info(books);
       this.setState({ books });
     });
   }
 
+  handleShelfChange = (book, event) => {
+    const newShelf = event.target.value;
+    const unchangedBooks = this.state.books.filter(b => b.id !== book.id);
+    this.setState({ books: unchangedBooks.concat({...book, shelf: newShelf})});
+  };
+
   render() {
-    const { books } = this.state;
+    const { books, shelves } = this.state;
 
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <MyBooks books={books} />
+          <MyBooks books={books} shelves={shelves} handleShelfChange={this.handleShelfChange} />
         )}/>
         {/*TODO: use history.push here? find out why*/}
         <Route path="/search" render={() =>(

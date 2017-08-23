@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf.js';
 
-const shelves = [
-  'currentlyReading',
-  'wantToRead',
-  'read'
-];
-
 class MyBooks extends Component {
 
   render() {
-    const { books } = this.props;
+    const { books, shelves, handleShelfChange } = this.props;
+
+    console.info(shelves);
 
     return (
       <div className="my-books">
@@ -19,7 +15,13 @@ class MyBooks extends Component {
           <h1>MyReads</h1>
         </div>
         {shelves.map((shelf) => (
-          <Bookshelf key={shelf} type={shelf} books={books} />
+          <Bookshelf
+            key={shelf.name}
+            shelf={shelf}
+            shelves={shelves}
+            books={books}
+            handleShelfChange={handleShelfChange}
+          />
         ))}
         <Link to="/search" className="search-book-button">Search Books</Link>
       </div>

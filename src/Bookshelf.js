@@ -2,31 +2,25 @@ import React, { Component } from 'react';
 import Book from './Book.js';
 import './Bookshelf.css';
 
-const shelfNames = {
-  currentlyReading: 'Currently Reading',
-  wantToRead: 'Want to Read',
-  read: 'Read'
-};
-
 class Bookshelf extends Component {
 
   render() {
-    const { books, type } = this.props;
+    const { books, shelf, shelves, handleShelfChange } = this.props;
 
     let booksToDisplay = books;
 
-    if (type) {
-      booksToDisplay = books.filter((book) => book.shelf === type);
+    if (shelf.type) {
+      booksToDisplay = books.filter((book) => book.shelf === shelf.type);
     }
 
     return (
       <section className="bookshelf">
-        {type && (
-          <h2 className="bookshelf-title">{shelfNames[type]}</h2>
+        {shelf.name && (
+          <h2 className="bookshelf-title">{shelf.name}</h2>
         )}
         <ol className="books-grid">
           {booksToDisplay.map((book, index) => (
-            <Book key={book.id} book={book} />
+            <Book key={book.id} book={book} shelves={shelves} handleShelfChange={handleShelfChange} />
           ))}
         </ol>
       </section>
