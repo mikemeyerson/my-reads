@@ -13,16 +13,20 @@ class BooksApp extends Component {
     shelves: [
       {
         name: 'Currently Reading',
-        type: 'currentlyReading'
+        type: 'currentlyReading',
+        isDisplayed: true
       }, {
         name: 'Want to Read',
-        type: 'wantToRead'
+        type: 'wantToRead',
+        isDisplayed: true
       }, {
         name: 'Read',
-        type: 'read'
+        type: 'read',
+        isDisplayed: true
       }, {
         name: 'None',
-        type: 'none'
+        type: 'none',
+        isDisplayed: false
       }
     ]
   };
@@ -35,8 +39,12 @@ class BooksApp extends Component {
 
   handleShelfChange = (book, event) => {
     const newShelf = event.target.value;
-    const unchangedBooks = this.state.books.filter(b => b.id !== book.id);
-    this.setState({ books: unchangedBooks.concat({...book, shelf: newShelf})});
+
+    BooksAPI.update(book, newShelf).then((response) => {
+      console.info(response);
+      const unchangedBooks = this.state.books.filter(b => b.id !== book.id);
+      this.setState({ books: unchangedBooks.concat({...book, shelf: newShelf})});
+    })
   };
 
   render() {
@@ -49,7 +57,7 @@ class BooksApp extends Component {
         )}/>
         {/*TODO: use history.push here? find out why*/}
         <Route path="/search" render={() =>(
-          <SearchBooks books={books} />
+          <SearchBooks books={books} shelves={shelves} handleShelfChange={this.handleShelfChange} />
         )}/>
       </div>
     );
