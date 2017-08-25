@@ -8,8 +8,8 @@ const Book = ({book, shelves, handleShelfChange}) => {
         <div className="book-cover">
           <img src={book.imageLinks.thumbnail} alt={book.title} />
         </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-author">{book.authors.join(', ')}</div>
+        {book.title && <div className="book-title">{book.title}</div>}
+        {book.authors && <div className="book-author">{book.authors.join(', ')}</div>}
         <select className="shelf-dropdown" value={book.shelf || 'none'} onChange={(event) => handleShelfChange(book, event)}>
           <option value="none" disabled>Move to...</option>
           {shelves.map(shelf => (
