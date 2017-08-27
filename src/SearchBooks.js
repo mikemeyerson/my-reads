@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import Bookshelf from './Bookshelf.js';
 import * as BooksAPI from './BooksAPI.js';
+import Bookshelf from './Bookshelf.js';
+import './SearchBooks.css';
+
 
 
 class SearchBooks extends Component {
 
-	state = {
-		query: '',
+  state = {
+    query: '',
     searchResults: []
-	};
+  };
 
   handleQueryChange = (event) => {
     const query = event.target.value.trim();
@@ -51,18 +53,25 @@ class SearchBooks extends Component {
 
     return (
       <div className="search-books">
-        <div className="search-header">
-          <Link to="/" className="back-button">Back</Link>
-          <form className="search-form">
+        <div className="search-bar">
+          <Link to="/" className="close-search">Close</Link>
+          <div className="search-wrapper">
             <input
               type="text"
               placeholder="Search by title or author"
               value={query}
               onChange={this.handleQueryChange}
             />
-          </form>
+          </div>
         </div>
-        <Bookshelf books={searchResults} shelves={shelves} handleShelfChange={handleShelfChange} />
+        <div className="search-results">
+          <Bookshelf
+            name={searchResults.length ? "Search Results" : ''}
+            shelves={shelves}
+            books={searchResults}
+            handleShelfChange={handleShelfChange}
+          />
+        </div>
       </div>
     );
   }

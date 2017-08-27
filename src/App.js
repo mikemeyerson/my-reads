@@ -7,26 +7,22 @@ import './App.css';
 
 
 // TODO: try PropTypes
+// TODO: history.push?
+// TODO: any other way to store shelves? books array in each shelf?
+// TODO: tests
 class BooksApp extends Component {
   state = {
     books: [],
     shelves: [
       {
         name: 'Currently Reading',
-        type: 'currentlyReading',
-        isDisplayed: true
+        type: 'currentlyReading'
       }, {
         name: 'Want to Read',
-        type: 'wantToRead',
-        isDisplayed: true
+        type: 'wantToRead'
       }, {
         name: 'Read',
-        type: 'read',
-        isDisplayed: true
-      }, {
-        name: 'None',
-        type: 'none',
-        isDisplayed: false
+        type: 'read'
       }
     ]
   };
@@ -41,7 +37,6 @@ class BooksApp extends Component {
     const newShelf = event.target.value;
 
     BooksAPI.update(book, newShelf).then((response) => {
-      console.info(response);
       const unchangedBooks = this.state.books.filter(b => b.id !== book.id);
       this.setState({ books: unchangedBooks.concat({...book, shelf: newShelf})});
     })
@@ -55,7 +50,6 @@ class BooksApp extends Component {
         <Route exact path="/" render={() => (
           <MyBooks books={books} shelves={shelves} handleShelfChange={this.handleShelfChange} />
         )}/>
-        {/*TODO: use history.push here? find out why*/}
         <Route path="/search" render={() =>(
           <SearchBooks books={books} shelves={shelves} handleShelfChange={this.handleShelfChange} />
         )}/>

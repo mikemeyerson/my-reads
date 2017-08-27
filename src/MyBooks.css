@@ -1,0 +1,15 @@
+.close-my-books {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  background-color: green;
+  background-image: url('./icons/add.svg');
+  background-size: 2.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0px 2px 10px grey;
+  font-size: 0;
+}

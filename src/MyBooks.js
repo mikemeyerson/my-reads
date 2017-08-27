@@ -1,34 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf.js';
+import './MyBooks.css';
 
-// TODO: Make stateless?
-// TODO: Shelves info and sorting each book probably goes in here
-class MyBooks extends Component {
+const MyBooks = ({ books, shelves, handleShelfChange }) => {
 
-  render() {
-    const { books, shelves, handleShelfChange } = this.props;
+  const getBooksToDisplay = (shelfType) => books.filter((book) => book.shelf === shelfType);
 
-    const shelvesToDisplay = shelves.filter((shelf) => shelf.isDisplayed);
-
-    return (
-      <div className="my-books">
-        <div className="app-header">
-          <h1>MyReads</h1>
-        </div>
-        {shelvesToDisplay.map((shelf) => (
-          <Bookshelf
-            key={shelf.name}
-            shelf={shelf}
-            shelves={shelves}
-            books={books}
-            handleShelfChange={handleShelfChange}
-          />
-        ))}
-        <Link to="/search" className="search-book-button">Search Books</Link>
+  return (
+    <div className="my-books">
+      <div className="app-header">
+        <h1>MyReads</h1>
       </div>
-    );
-  }
+      {shelves.map((shelf) => (
+        <Bookshelf
+          key={shelf.name}
+          name={shelf.name}
+          shelves={shelves}
+          books={getBooksToDisplay(shelf.type)}
+          handleShelfChange={handleShelfChange}
+        />
+      ))}
+      <Link to="/search" className="close-my-books">Search Books</Link>
+    </div>
+  );
 }
 
 export default MyBooks;
