@@ -6,7 +6,6 @@ import Bookshelf from './Bookshelf.js';
 import './SearchBooks.css';
 
 
-
 class SearchBooks extends Component {
 
   state = {
@@ -14,8 +13,8 @@ class SearchBooks extends Component {
     searchResults: []
   };
 
-  handleQueryChange = (event) => {
-    const query = event.target.value.trim();
+  handleQueryChange = ({ target }) => {
+    const query = target.value.trim();
 
     this.setState({ query });
     this.debounced(query);

@@ -6,8 +6,6 @@ import * as BooksAPI from './BooksAPI.js';
 import './App.css';
 
 
-// TODO: try PropTypes
-// TODO: history.push?
 // TODO: any other way to store shelves? books array in each shelf?
 // TODO: tests
 class BooksApp extends Component {
@@ -33,8 +31,8 @@ class BooksApp extends Component {
     });
   }
 
-  handleShelfChange = (book, event) => {
-    const newShelf = event.target.value;
+  handleShelfChange = (book, { target }) => {
+    const newShelf = target.value;
 
     BooksAPI.update(book, newShelf).then((response) => {
       const unchangedBooks = this.state.books.filter(b => b.id !== book.id);
@@ -48,10 +46,21 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <MyBooks books={books} shelves={shelves} handleShelfChange={this.handleShelfChange} />
+          <MyBooks
+            books={books}
+            shelves={shelves}
+            handleShelfChange={this.handleShelfChange}
+          />
         )}/>
-        <Route path="/search" render={() =>(
-          <SearchBooks books={books} shelves={shelves} handleShelfChange={this.handleShelfChange} />
+        <Route path="/search" render={({ history }) => (
+          <SearchBooks
+            books={books}
+            shelves={shelves}
+            handleShelfChange={(book, event) => {
+              history.push('/');
+              this.handleShelfChange(book, event);
+            }}
+          />
         )}/>
       </div>
     );

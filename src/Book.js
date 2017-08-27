@@ -1,7 +1,16 @@
+//@flow
+
 import React from 'react';
+import type { BookType, ShelfType } from './Types.js';
 import './Book.css';
 
-const Book = ({ book, shelves, handleShelfChange }) => {
+type BookArgs = {
+  book: BookType,
+  shelves: Array<ShelfType>,
+  handleShelfChange: Function
+};
+
+const Book = ({ book, shelves, handleShelfChange } : BookArgs) => {
 
   const hasCover = book.imageLinks && book.imageLinks.thumbnail;
 
@@ -24,7 +33,7 @@ const Book = ({ book, shelves, handleShelfChange }) => {
             </select>
           </div>
         </div>
-        <div className="book-title">{book.title || ''}</div>
+        <div className="book-title">{book.title || 'No Title'}</div>
         <div className="book-author">{book.authors ? book.authors.join(', ') : 'Unknown'}</div>
       </div>
     </li>
