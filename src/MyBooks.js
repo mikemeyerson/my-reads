@@ -1,18 +1,17 @@
 // @flow
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf.js';
 import type { BookType, ShelfType } from './Types.js';
 import './MyBooks.css';
 
-type MyBooksArgs = {
+type Props = {
   books: Array<BookType>,
   shelves: Array<ShelfType>,
   handleShelfChange: Function
 };
 
-const MyBooks = ({ books, shelves, handleShelfChange } : MyBooksArgs) => {
+const MyBooks = ({ books, shelves, handleShelfChange }: Props) => {
 
   const getBooksToDisplay = (shelfType) => books.filter((book) => book.shelf === shelfType);
 

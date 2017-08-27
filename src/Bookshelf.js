@@ -1,18 +1,17 @@
 // @flow
-
 import React from 'react';
 import Book from './Book.js';
 import type { BookType, ShelfType } from './Types.js';
 import './Bookshelf.css';
 
-type BookshelfArgs = {
+type Props = {
   books: Array<BookType>,
   name: string,
   shelves: Array<ShelfType>,
   handleShelfChange: Function
 };
 
-const Bookshelf = ({ books, name, shelves, handleShelfChange } : BookshelfArgs) => {
+const Bookshelf = ({ books, name, shelves, handleShelfChange }: Props) => {
   return (
     <section className="bookshelf">
       {name && <h2 className="bookshelf-title">{name}</h2>}

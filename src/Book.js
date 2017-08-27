@@ -1,16 +1,15 @@
 //@flow
-
 import React from 'react';
 import type { BookType, ShelfType } from './Types.js';
 import './Book.css';
 
-type BookArgs = {
+type Props = {
   book: BookType,
   shelves: Array<ShelfType>,
   handleShelfChange: Function
 };
 
-const Book = ({ book, shelves, handleShelfChange } : BookArgs) => {
+const Book = ({ book, shelves, handleShelfChange }: Props) => {
 
   const hasCover = book.imageLinks && book.imageLinks.thumbnail;
 

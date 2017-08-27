@@ -1,16 +1,14 @@
 // @flow
 
-type Shelf = 'currentlyReading' | 'wantToRead' | 'read' | 'none';
-
 export type ShelfType = {
 	name: string,
-	type: Shelf
+	type: string
 };
 
 export type BookType = {
 	authors: Array<string>,
 	id: string,
-	shelf?: Shelf,
+	shelf?: string,
 	title: string,
 	imageLinks: {
 		thumbnail: string
