@@ -5,7 +5,6 @@ import * as BooksAPI from './BooksAPI.js';
 import MyBooks from './MyBooks.js';
 import SearchBooks from './SearchBooks.js';
 import type { BookType, ShelfType } from './Types.js';
-
 import './App.css';
 
 type State = {

@@ -16,10 +16,9 @@ const Book = ({ book, shelves, handleShelfChange }: Props) => {
   return (
     <li className="book-wrapper">
       <div className="book">
-        <div className={`book-cover ${hasCover ? '' : 'no-cover'}`}>
-          {book.imageLinks && book.imageLinks.thumbnail && (
-              <img src={book.imageLinks.thumbnail} alt={book.title} />
-          )}
+        <div className="book-cover">
+          {hasCover && <img src={book.imageLinks.thumbnail} alt={book.title} />}
+          {!hasCover && <div className="no-cover" />}
           <div className="change-shelf">
             <select value={book.shelf || 'none'} onChange={(event) => handleShelfChange(book, event)}>
               <option value="" disabled>Move to...</option>

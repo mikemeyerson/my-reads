@@ -7,35 +7,37 @@
   text-align: left;
 }
 
-.book .book-cover {
+.book-cover {
   height: 12rem;
   display: flex;
   align-items: flex-end;
   margin-bottom: 0.8rem;
 }
 
-.book .book-cover.no-cover {
+.book-cover .no-cover {
+	height: 11rem;
+	width: 130px;
 	background-color: gray;
   box-shadow: 0px 2px 10px grey;
 
 }
 
-.book .book-cover img {
+.book-cover img {
   max-height: 12rem;
   max-width: 10rem;
   box-shadow: 0px 2px 10px grey;
 }
 
-.book .book-author {
+.book-author {
   color: darkgrey;
   font-size: 0.8rem;
 }
 
-.book .book-title {
+.book-title {
   font-size: 0.8rem;
 }
 
-.book .change-shelf {
+.change-shelf {
   height: 2.5rem;
   width: 2.5rem;
   background-image: url('./icons/arrow-drop-down.svg');
@@ -50,7 +52,7 @@
   box-shadow: 0px 2px 10px grey;
 }
 
-.book .change-shelf select {
+.change-shelf select {
   height: 100%;
   width: 100%;
   cursor: pointer;
