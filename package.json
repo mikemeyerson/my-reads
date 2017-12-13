@@ -1,6 +1,7 @@
 {
   "name": "react-nd-project1",
   "version": "0.1.0",
+  "homepage": "http://mikemeyerson.github.io/my-reads",
   "private": true,
   "dependencies": {
     "flow-bin": "^0.53.1",
